@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tower Defense</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="scripts/lib/lz-string.min.js" defer></script>
+    <script src="scripts/lib/p5.min.js" defer></script>
+    <script src="scripts/lib/p5.sound.min.js" defer></script>
+    <script src="scripts/utils.js" defer></script>
+    <script src="scripts/enemy.js" defer></script>
+    <script src="scripts/enemies.js" defer></script>
+    <script src="scripts/particle.js" defer></script>
+    <script src="scripts/particle_system.js" defer></script>
+    <script src="scripts/effect.js" defer></script>
+    <script src="scripts/effects.js" defer></script>
+    <script src="scripts/tower.js" defer></script>
+    <script src="scripts/towers.js" defer></script>
+    <script src="scripts/missile.js" defer></script>
+    <script src="scripts/maps.js" defer></script>
+    <script src="scripts/tiles.js" defer></script>
+    <script src="scripts/sketch.js" defer></script>
+  </head>
+  <body>
+    <div id="infopopup">
+      <div id="infotext">placeholder</div>
+      <button
+        id="popupbutton"
+        onclick="getElementById('infopopup').style.display = 'none'; pause()"
+      >
+        Close
+      </button>
+    </div>
+    <div id="skillpopup">
+      <div id="skilltext">Pick your skill level.</div>
+      <button
+        id="skillbutton1"
+        onclick="getElementById('skillpopup').style.display = 'none'; difficulty = 'standard';"
+      >
+        Standard
+      </button>
+      <button
+        id="skillbutton2"
+        onclick="getElementById('skillpopup').style.display = 'none'; difficulty = 'expert';"
+      >
+        Expert
+      </button>
+    </div>
+
+    <header>
+      <h1>Tower Defense</h1>
+    </header>
+
+    <main>
+      <div id="left-asides">
+        <aside id="map-aside">
+          
+        <aside id="store">
+          <h2>Store</h2>
+          <div class="group">
+            <p>
+              <button class="gun" onclick="setPlace('gun')">
+                Gun Tower (1)
+              </button>
+            </p>
+            <p>
+              <button class="laser" onclick="setPlace('laser')">
+                Laser Tower (2)
+              </button>
+            </p>
+            <p>
+              <button class="slow" onclick="setPlace('slow')">
+                Slow Tower (3)
+              </button>
+            </p>
+            <p>
+              <button class="sniper" onclick="setPlace('sniper')">
+                Sniper Tower (4)
+              </button>
+            </p>
+            <p>
+              <button class="rocket" onclick="setPlace('rocket')">
+                Rocket Tower (5)
+              </button>
+            </p>
+            <p>
+              <button class="bomb" onclick="setPlace('bomb')">
+                Bomb Tower (6)
+              </button>
+            </p>
+            <p>
+              <button class="tesla" onclick="setPlace('tesla')">
+                Tesla Coil (7)
+              </button>
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <div id="sketch-holder"></div>
+
+      <div id="right-asides">
+        <aside id="status">
+          <p id="wave"></p>
+          <p id="health"></p>
+          <p id="cash"></p>
+          <div class="horiz-buttons">
+            <button id="pause" onclick="pause()">Start</button>
+            <button onclick="resetGame()">Restart</button>
+          </div>
+          <p>
+            Map:
+            <select id="map">
+              <option value="ring">Roundabout (?)</option>
+              <option value="easy" selected>Beginner (Easy)</option>
+              <option value="sea">High Seas (Easy)</option>
+              <option value="divide">Divide (Medium)</option>
+              <option value="uturn">U-Turn (Hard)</option>
+              <option value="fourspawn">4 Spawns (Extreme)</option>
+              <option value="park">Park (Extreme)</option>
+            </select>
+          </p>
+        </aside>
+
+        <aside id="info">
+          <div id="info-div">
+            <h3 id="name"></h3>
+            <p id="cost"></p>
+            <p id="sellPrice"></p>
+            <p id="upPrice"></p>
+            <p id="damage"></p>
+            <p id="type"></p>
+            <p id="range"></p>
+            <p id="cooldown"></p>
+            <div class="horiz-buttons" id="info-buttons">
+              <button id="sell" onclick="if (selected) sell(selected)">
+                Sell
+              </button>
+              <button
+                id="upgrade"
+                onclick="if (selected && selected.upgrades.length > 0) upgrade(selected.upgrades[0])"
+              >
+                Upgrade
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </body>
+</html>
